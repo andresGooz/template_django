@@ -1,0 +1,122 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@andresGooz
+
+293,526
+2,203
+43,875
+
+    18,837
+
+django/django
+Code
+Pull requests 223
+Security
+Insights
+django/django/contrib/admin/templates/admin/login.html
+@jdufresne jdufresne Fixed #29038 -- Removed closing slash from HTML void tags. ff05de7 on 21 Jan 2018
+@jezdez
+@spookylukey
+@jacobian
+@claudep
+@adrianholovaty
+@graingert
+@timgraham
+@ttanner
+@sjoerdjob
+@freakboy3742
+@lvisintini
+@t4rtine
+@jdufresne
+@codingjoe
+@frog32
+@dakrauth
+@ramiro
+@brosner
+67 lines (54 sloc) 1.83 KB
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
+{{ form.media }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+{% if form.errors and not form.non_field_errors %}
+<p class="errornote">
+{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+</p>
+{% endif %}
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="errornote">
+    {{ error }}
+</p>
+{% endfor %}
+{% endif %}
+
+<div id="content-main">
+
+{% if user.is_authenticated %}
+<p class="errornote">
+{% blocktrans trimmed %}
+    You are authenticated as {{ username }}, but are not authorized to
+    access this page. Would you like to login to a different account?
+{% endblocktrans %}
+</p>
+{% endif %}
+
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  <div class="form-row">
+    {{ form.username.errors }}
+    {{ form.username.label_tag }} {{ form.username }}
+  </div>
+  <div class="form-row">
+    {{ form.password.errors }}
+    {{ form.password.label_tag }} {{ form.password }}
+    <input type="hidden" name="next" value="{{ next }}">
+  </div>
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+  </div>
+  {% endif %}
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}">
+  </div>
+</form>
+
+</div>
+{% endblock %}
+
+    © 2019 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
+

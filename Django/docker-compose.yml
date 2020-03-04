@@ -1,0 +1,36 @@
+version: "3.5"
+services:
+  django: &environ
+    container_name: django
+    build: .
+    command: bash -c "  cd app &&
+                        python manage.py collectstatic --noinput || true &&
+                        python manage.py makemigrations biblioteca &&
+                        python manage.py migrate biblioteca &&
+                        python manage.py makemigrations &&
+                        python manage.py migrate &&
+                        python manage.py check --deploy &&
+                        gunicorn -b 0.0.0.0:80 -w 4 app.wsgi:application"
+    restart: always
+    environment:
+      - site_url=${site_url}
+      - DEBUG=${DEBUG}
+      - SQL_ENGINE=${SQL_ENGINE}
+      - SQL_DATABASE=${SQL_DATABASE}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+      - SQL_HOST=${SQL_HOST}
+      - SQL_PORT=${SQL_PORT}
+    expose:
+      - "80"
+    volumes:
+        - .:/Django
+        - /static:/static
+    networks:
+      - outside
+networks:
+  outside:
+    external:
+      name: red_django_1
+# django-admin startproject app || true &&
+# python manage.py startapp biblioteca || true &&

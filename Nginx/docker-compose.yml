@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  nginx:
+    image: nginx:1.17.3-alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        - ../Django/static:/static
+        - ../Django/media:/media
+
+    networks:
+      - outside
+networks:
+  outside:
+    external:
+      name: red_django_1

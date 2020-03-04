@@ -1,0 +1,44 @@
+
+  .chical_showcase{
+    display: grid;
+    grid-column-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+  }
+  .chical_showcase > .chical_product_showcase{
+    width: 300px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows:  185px auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: "image"
+                         "description";
+  }
+  .chical_showcase > .chical_product_showcase > img{
+    height: 185px;
+    grid-area: image;
+    width: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .chical_showcase > .chical_product_showcase > .description{
+    grid-area: description;
+    text-align: center;
+    display: grid;
+  }
+  .chical_showcase > .chical_product_showcase > .description > .titulo{
+    font-weight: bold;
+  }
+  .chical_showcase > .chical_product_showcase > .description > .precio{
+    color: red;
+  }
+  .chical_showcase > .chical_product_showcase > .description > .color{
+    background: skyblue;
+  }
+.chical_black_button{
+  background: black;
+  color:white;
+  cursor: pointer;
+  text-align: center;
+}

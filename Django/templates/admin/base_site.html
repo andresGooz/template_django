@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Chical{% endblock %}
+
+{% block extrastyle %}
+<style>
+  #header{
+    background-color: #333;
+  }
+  .button, input[type=submit], input[type=button], .submit-row input, a.button {
+      background: #333;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+  }
+</style>
+
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Chical Admin Site</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

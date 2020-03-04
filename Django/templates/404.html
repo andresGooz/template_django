@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+{% load prices_filtertag %}
+
+{% block extrastyle %}
+<style>
+  .error{
+    text-align:center;
+  }
+  .error > .imagen{
+    margin-left:25%;
+    margin-right:25%;
+    border-bottom: 2px solid gray;
+  }
+  .error > .titulo{
+    font-weight:bold;
+    font-size: 40pt;
+  }
+  .error > .mensaje{
+    font-size: 23pt;
+  }
+</style>
+{% endblock %}
+{% block extrascript %}
+<script type="text/javascript">
+</script>
+{% endblock %}
+
+{% block content1 %}
+<div class="error">
+  <div class="imagen">
+    imagen
+  </div>
+  <div class="titulo">
+    ERROR 404
+  </div>
+  <div class="mensaje">
+    Página no encontrada
+  </div>
+</div>
+{% endblock %}

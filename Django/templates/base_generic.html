@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="descripción el sitio">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+              :root {}
+              html {
+                font-size: 11pt;
+                font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+                height: 100%;
+              }
+              body{}
+
+              @media only screen and (min-width:761px) {.hamburguesa{display: none !important;}}
+              @media only screen and (max-width:760px) {}
+    </style>
+    <link rel="stylesheet" href="{% static 'chical.css' %}">
+    {% block extrastyle %}
+    {% endblock %}
+
+    <script src="{% static 'jquery/jquery.js' %}"></script>
+    <script src="{% static 'sweetalert.min.js' %}"></script>
+<script type="text/javascript">
+  window.onload = function() {}
+</script>
+{% block extrascript %}
+{% endblock %}
+
+<title>título</title>
+</head>
+  <body>
+      {% block content1 %}
+      {% endblock %}
+  </body>
+</html>

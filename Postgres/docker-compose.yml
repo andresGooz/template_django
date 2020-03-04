@@ -1,0 +1,20 @@
+version: "3.5"
+services:
+  postgres:
+    image: postgres:11.5-alpine
+    restart: always
+    container_name: postgres
+    environment:
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=admin
+        - POSTGRES_DB=django
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - outside
+networks:
+  outside:
+    external:
+      name: red_django_1

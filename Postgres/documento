@@ -1,0 +1,13 @@
+## entrar a la dase de datos corriendo en un container llamado postgres
+docker exec -it postgres psql -U root django
+
+
+
+Puedes usar este modo de desarrollo libremente. Lo único relmente importante es saber que para migrar la
+base de datos es necesario enviar el contenido de la carpeto postgres-data usando ssh:
+scp -r /path/to/postgres-data user@ip:/path/to/Chical/Postgres/postgres-data
+
+luego conectado al vps: será necesario reiniciar el sistema
+ssh user@ip
+
+docker exec -it postgres psql -U root django
